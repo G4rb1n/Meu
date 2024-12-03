@@ -16,16 +16,16 @@
       <ul class="dropdownMenu" id="boardsList">
 
       </ul>
-      <ul class="tablesMenu" id="tablesList">
-        
-      </ul>
-      <ul class="taskMenu" id="taskList">
-
-      </ul>
     </div>  
 
-    <div id="colunas"></div>
-   
+    <div id="colunas">
+      
+    </div>
+
+    <div id="tasksdiv">
+
+    </div>
+
   <script type="module" src="./scripts/pages/taskBoard.js"></script>
 </body>
 </html>
