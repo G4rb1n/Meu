@@ -1,0 +1,123 @@
+/* Resetando margens e padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000000; /* Fundo suave */
+  color: #ffffff; /* Cor do texto */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Classe oculta */
+.hidden {
+  display: none;
+}
+
+/* Botão para exibir lista de boards */
+.button-toggle-taskboard {
+  background-color: #0f2938; /* Verde vibrante */
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-toggle-taskboard:hover {
+  background-color: #4586a0;
+}
+
+/* Lista de boards */
+#boardsList {
+  background: #FF6347; /* Cor de fundo vermelho suave */
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#boardsList li {
+  list-style: none;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#boardsList li:hover {
+  background-color: #f4f4f4;
+  color: #007BFF;
+}
+
+/* Colunas de tabelas */
+#colunas {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.col-individual {
+  background: #5408ce; /* Verde */
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 15px;
+  width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.col-individual h2 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: rgb(255, 255, 255);
+}
+
+/* Tarefas dentro das colunas */
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+
+}
+
+.task-individual {
+  background-color: #000000;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #fafafa;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #ffffff;
+}
+
+.task-individual:hover {
+  background-color: #000000;
+  color: #007BFF;
+}
+
+/* Ajustes para responsividade */
+@media (max-width: 768px) {
+  #colunas {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .col-individual {
+    width: 100%;
+  }
+}
