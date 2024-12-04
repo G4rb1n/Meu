@@ -11,6 +11,27 @@ async function handleError(response) {
     return false;
 }
 
+// Seleciona o botão de alternância de tema
+const themeToggle = document.getElementById('themeToggle');
+
+// Adiciona evento de clique para alternar o tema
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('light-theme'); // Alterna a classe do corpo
+
+  // Armazena a preferência do tema no localStorage
+  const isLightTheme = document.body.classList.contains('light-theme');
+  localStorage.setItem('theme', isLightTheme ? 'light' : 'dark');
+});
+
+// Aplica o tema salvo no localStorage ao carregar a página
+window.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-theme');
+  }
+});
+
+
 // Função para criar e adicionar itens na lista
 function createListItem(parentElement, textContent, callback) {
     const item = document.createElement('li');
@@ -19,11 +40,22 @@ function createListItem(parentElement, textContent, callback) {
     parentElement.appendChild(item);
 }
 
-document.querySelector('.button-toggle-taskboard').addEventListener('click', async (event) => {
+document.querySelector('#selecionar').addEventListener('click', async (event) => {
     event.preventDefault();
 
     const dropdownMenu = document.getElementById('boardsList');
-    dropdownMenu.innerHTML = ''; // Limpa os itens existentes
+    const colunasDiv = document.getElementById('colunas');
+    const backButton = document.getElementById('backToBoards');
+
+    // Garante que apenas a lista de boards esteja visível
+    dropdownMenu.style.display = 'block';
+    colunasDiv.style.display = 'none';
+
+    // Remove o botão de voltar, se existir
+    if (backButton) backButton.remove();
+
+    // Limpa os itens existentes na lista de boards
+    dropdownMenu.innerHTML = '';
 
     try {
         const response = await fetch(`${API_BASE_URL}/Boards`);
@@ -35,13 +67,16 @@ document.querySelector('.button-toggle-taskboard').addEventListener('click', asy
             createListItem(dropdownMenu, board.Name, () => {
                 alert(`Board selecionado: ${board.Id}`);
                 showTables(board.Id);
+
                 dropdownMenu.style.display = 'none'; // Esconde a lista de boards
+                document.body.appendChild(createBackButton()); // Adiciona o botão de voltar
             });
         });
     } catch (error) {
         console.log(error);
     }
 });
+
 
 async function showTables(boardId) {
     const colunasDiv = document.getElementById("colunas");
