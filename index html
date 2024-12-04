@@ -6,10 +6,12 @@
   <title>TaskBoard - Login</title>
   <link rel="stylesheet" href="./styles/global.css">
   <link rel="stylesheet" href="./styles/login.css">
+
 </head>
 <body>
   <div class="login-container">
-    <h1>Trello Open Source</h1>
+    <h1>TaskMaker</h1>
+    <h3>Login</h3>
     <form id="login-form">
       <label for="email">Email:</label>
       <input type="email" id="email" name="email" placeholder="Insira seu email" required>
