@@ -9,22 +9,24 @@
 <body>
   <nav class="navbar">
     <div class="navbar-container">
-      <a href="#" class="navbar-logo">TaskBoard</a>
-      <ul class="navbar-menu">
-        <div><a href="#" id="home">Home</a></div>
-        <li><a href="#" id="boards">Boards</a>
-        <li><a href="#" id="about">Sobre</a></li>
-      </ul>
+      <a href="#" class="navbar-logo">TaskMaker</a>
       <button class="navbar-toggle" id="navbarToggle">&#9776;</button>
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="#" id="home">Home</a></li>
+        <li class="dropdown">
+          <button id="selecionar" class="dropdown-toggle">Selecionar Board</button>
+          <ul class="dropdown-menu" id="boardsList">
+            <!-- Adicione itens aqui dinamicamente -->
+          </ul>
+        </li>
+        <li>
+          <button id="themeToggle" class="theme-toggle">Mudar Tema</button>
+        </li>
+      </ul>
     </div>
   </nav>
   
-
-    <div class="button-toggle-taskboard">
-      <button id="selecionar">
-          Selecionar board
-      </button>
-      <ul class="dropdownMenu" id="boardsList">
+  
 
       </ul>
     </div>  
@@ -39,7 +41,7 @@
 
     </div>
 
-    <button id="themeToggle" class="theme-toggle">Mudar Tema</button>
+    
 
   <script type="module" src="./scripts/pages/taskBoard.js"></script>
 </body>
