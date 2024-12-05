@@ -1,62 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TaskBoard</title>
-  <link rel="stylesheet" href="./styles/global.css">
-</head>
-<body>
-  <nav class="navbar">
-    <div class="navbar-container">
-      <a href="#" class="navbar-logo">TaskMaker</a>
-      <button class="navbar-toggle" id="navbarToggle">&#9776;</button>
-      <ul class="navbar-menu" id="navbarMenu">
-        <li><a href="#" id="home">Home</a></li>
-        <li class="dropdown">
-          <button id="selecionar" class="dropdown-toggle">Selecionar Board</button>
-          <ul class="dropdown-menu" id="boardsList">
-            <!-- Adicione itens aqui dinamicamente -->
-          </ul>
-        </li>
-        <li>
-          <button id="themeToggle" class="theme-toggle">Mudar Tema</button>
-        </li>
-      </ul>
-    </div>
-    <button id="add-board-btn">Adicionar Novo Board</button>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #000; /* Fundo preto */
+  color: #fff; /* Texto branco */
+}
 
-    <div class="modal" id="create-board-modal">
-        <div class="modal-content">
-            <button class="close">&times;</button>
-            <h2>Criar Board</h2>
-            <form id="create-board-form">
-                <label for="board-name">Nome do Board</label>
-                <input type="text" id="board-name" placeholder="Digite o nome do board" required>
-                <button type="submit">Criar</button>
-            </form>
-        </div>
-    </div>
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
-  </nav>
-      
-  
+header {
+  background-color: #1c1c1c;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
 
-      </ul>
-    </div>  
+header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
 
+.project-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
+.project-selector select,
+.project-selector button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #fff;
+}
 
-    <div id="colunas">
-      
-    </div>
+main {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
-    <div id="tasksdiv">
+#columns {
+  display: flex;
+  gap: 20px; /* Espaço entre as colunas */
+  overflow-x: auto; /* Permite rolagem horizontal caso as colunas excedam o espaço disponível */
+}
 
-    </div>
+.column {
+  background-color: #1c1c1c;
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 250px; /* Largura mínima para cada coluna */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
 
-    
+.column-header {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px 0;
+  background-color: #333;
+  border-radius: 5px;
+}
 
-  <script type="module" src="./scripts/pages/taskBoard.js"></script>
-</body>
-</html>
+.tasks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: #262626;
+  border-radius: 5px;
+  overflow-y: auto; /* Permite rolagem vertical se houver muitas tarefas */
+}
+
+.task {
+  padding: 10px;
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  cursor: grab;
+  transition: background-color 0.3s ease;
+}
+
+.task:active {
+  cursor: grabbing;
+}
+
+.task:hover {
+  background-color: #555;
+}
+
+button.add-task {
+  background-color: #7d22e4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.add-task:hover {
+  background-color: #0796af;
+}
+
+#add-column {
+  align-self: center;
+  padding: 10px 20px;
+  background-color: #7d22e4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#add-column:hover {
+  background-color: #0796af;
+}
