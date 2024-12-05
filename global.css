@@ -196,6 +196,7 @@ body {
   padding: 15px;
   width: 300px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
 }
 
 .tasks-container {
@@ -293,3 +294,25 @@ body {
             cursor: pointer;
         }
 
+        /* Estilo do botão de exclusão */
+    .delete-column {
+       font-size: 35px; /* Tamanho do ícone */
+        color: #fdfbfb var(--lixo-color);;  /* Cor do ícone */
+        background: none; /* Remove o fundo */
+       border: none;     /* Remove a borda */
+  cursor: pointer;  /* Muda o cursor para pointer */
+  padding: 5px;     /* Ajusta o espaçamento */
+  display: inline-flex;
+  
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease; /* Transição para o hover */
+  margin-left: right; /* Empurra o ícone para a direita */
+}
+
+/* Efeito no hover */
+.delete-column:hover {
+  transform: scale(1.2); /* Aumenta o ícone ao passar o mouse */
+  color: #fc2003; /* Cor no hover */
+}
+      
