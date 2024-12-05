@@ -31,6 +31,73 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Função para abrir o formulário de criação de board
+document.querySelector('#add-board-btn').addEventListener('click', () => {
+    const modal = document.getElementById('create-board-modal');
+    modal.style.display = 'block'; // Exibe o modal de criação de board
+});
+
+// Fechar o modal ao clicar fora dele
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('create-board-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none'; // Fecha o modal
+    }
+});
+
+// Enviar dados para criar um board
+document.querySelector('#create-board-form').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Impede o comportamento padrão do formulário
+
+    const name = document.querySelector('#board-name').value;
+
+    // Verifica se o usuário está logado e pega o ID do usuário
+    const userSession = sessionStorage.getItem("user");
+    if (!userSession) {
+        alert("Erro: Você não está logado. Por favor, faça o login.");
+        return;  // Impede a criação do board se o usuário não estiver logado
+    }
+    const user = JSON.parse(userSession);
+    const userId = user.id; // Corrigir para acessar o 'id' com 'i' minúsculo
+    console.log("User ID:", userId);  // Verifique o valor de userId no console
+
+    // Verifica se o nome do board foi preenchido
+    if (!name || name.trim() === "") {
+        alert("Erro: O nome do board não pode estar vazio.");
+        return;
+    }
+
+    const newBoard = {
+        Name: name,
+        Description: "",
+        HexaBackgroundColor: "",
+        IsActive: true,
+        CreatedBy: userId  // Garantir que CreatedBy está correto
+    };
+
+    console.log("Objeto para criação do Board:", newBoard);  // Verifique o objeto sendo enviado
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/Board`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newBoard)
+        });
+
+        if (await handleError(response)) return;
+
+        const board = await response.json();
+        alert('Board criado com sucesso!');
+        
+        // Fechar o modal após criar o board
+        document.getElementById('create-board-modal').style.display = 'none';
+        loadBoards(); // Atualizar a lista de boards
+    } catch (error) {
+        console.log('Erro ao criar board:', error);
+    }
+});
 
 // Função para criar e adicionar itens na lista
 function createListItem(parentElement, textContent, callback) {
